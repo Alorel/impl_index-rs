@@ -1,0 +1,41 @@
+name: Core
+
+on:
+  push:
+    branches: [master]
+
+  pull_request:
+    paths-ignore:
+      - .github/CODE_OF_CONDUCT.md
+      - .github/CODEOWNERS
+      - .github/dependabot.yml
+      - .github/FUNDING.yml
+      - LICENSE
+      - .gitignore
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    uses: alorel-actions/cargo/.github/workflows/reuse-test.yml@v1
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    with:
+      min-toolchain: 1.60.0
+      cargo-rdme-intralinks-strip-links: true
+
+  release:
+    name: Release
+    uses: alorel-actions/cargo/.github/workflows/reuse-release.yml@v1
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    needs: test
+    permissions:
+      contents: write
+    concurrency:
+      group: release
+    secrets:
+      gh-token: ${{ secrets.GH_TOKEN }}
+      crates-io-token: ${{ secrets.CRATES_IO_TOKEN }}
