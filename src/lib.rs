@@ -1,6 +1,6 @@
 //! A macro for deriving [`Index`](::core::ops::Index) & [`IndexMut`](::core::ops::IndexMut) implementations.
 //!
-//! [![MASTER CI status](https://github.com/Alorel/impl_index-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/Alorel/impl_index-rs/actions/workflows/ci.yml?query=branch%3Amaster)
+//! [![MASTER CI status](https://github.com/Alorel/impl_index-rs/actions/workflows/core.yml/badge.svg)](https://github.com/Alorel/impl_index-rs/actions/workflows/core.yml?query=branch%3Amaster)
 //! [![crates.io badge](https://img.shields.io/crates/v/impl_index)](https://crates.io/crates/impl_index)
 //! [![docs.rs badge](https://img.shields.io/docsrs/impl_index?label=docs.rs)](https://docs.rs/impl_index)
 //! [![dependencies badge](https://img.shields.io/librariesio/release/cargo/impl_index)](https://libraries.io/cargo/impl_index)
