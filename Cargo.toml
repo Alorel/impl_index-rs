@@ -4,9 +4,9 @@ version = "1.0.0"
 edition = "2021"
 rust-version = "1.60.0"
 authors = [
-  "Art <amolc@pm.me>",
+  "Artūras Molčanovas <amolc@pm.me>",
 ]
-license = "Apache-2.0"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 description = "Macro for deriving the Index trait"
 repository = "https://github.com/Alorel/impl_index-rs"
