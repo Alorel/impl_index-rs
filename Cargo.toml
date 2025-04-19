@@ -17,6 +17,9 @@ include = [
   "Cargo.toml",
 ]
 
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(doc_cfg)'] }
+
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = [
