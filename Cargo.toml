@@ -1,6 +1,6 @@
 [package]
 name = "impl_index"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 rust-version = "1.60.0"
 authors = [
@@ -17,15 +17,15 @@ include = [
   "Cargo.toml",
 ]
 
-[lints.rust]
-unexpected_cfgs = { level = "allow", check-cfg = ['cfg(doc_cfg)'] }
-
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = [
   "--cfg",
   "doc_cfg",
 ]
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(doc_cfg)'] }
 
 [lib]
 proc-macro = true
