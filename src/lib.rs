@@ -1,9 +1,9 @@
 //! A macro for deriving [`Index`](::core::ops::Index) & [`IndexMut`](::core::ops::IndexMut) implementations.
 //!
-//! [![MASTER CI status](https://github.com/Alorel/impl_index-rs/actions/workflows/core.yml/badge.svg)](https://github.com/Alorel/impl_index-rs/actions/workflows/core.yml?query=branch%3Amaster)
+//! [![MASTER CI status](https://github.com/Alorel/impl_index-rs/actions/workflows/test.yml/badge.svg)](https://github.com/Alorel/impl_index-rs/actions/workflows/test.yml?query=branch%3Amaster)
 //! [![crates.io badge](https://img.shields.io/crates/v/impl_index)](https://crates.io/crates/impl_index)
-//! [![docs.rs badge](https://img.shields.io/docsrs/impl_index?label=docs.rs)](https://docs.rs/impl_index)
 //! [![dependencies badge](https://img.shields.io/librariesio/release/cargo/impl_index)](https://libraries.io/cargo/impl_index)
+//! [![Coverage Status](https://coveralls.io/repos/github/Alorel/impl_index-rs/badge.png)](https://coveralls.io/github/Alorel/impl_index-rs)
 //!
 //! # Basic usage
 //!
@@ -125,6 +125,29 @@
 //!
 //! let mut instance = Struct { foo: 0 };
 //! instance[Idx::Foo] = 1;
+//! ```
+//!
+//! # Generic Example
+//!
+//! ```
+//! struct GenericStruct<T> {
+//!   foo: T,
+//!   bar: T,
+//! }
+//!
+//! enum Field {
+//!   Foo,
+//!   Bar,
+//! }
+//!
+//! impl_index::index!(<T> GenericStruct<T> by Field => T:
+//!   Foo => foo,
+//!   Bar => bar,
+//! );
+//!
+//! let instance = GenericStruct { foo: 10u8, bar: 100u8 };
+//! assert_eq!(instance[Field::Foo], 10u8);
+//! assert_eq!(instance[Field::Bar], 100u8);
 //! ```
 
 #![deny(clippy::correctness, clippy::suspicious)]
