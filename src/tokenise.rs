@@ -15,11 +15,11 @@ impl IndexMacro {
             pairings,
         } = self;
 
-        let (g1, g2, g3) = if let Some(ref generics) = generics {
-            let (g1, g2, g3) = generics.split_for_impl();
-            (Some(g1), Some(g2), Some(g3))
+        let (g1, g3) = if let Some(ref generics) = generics {
+            let (g1, _, g3) = generics.split_for_impl();
+            (Some(g1), Some(g3))
         } else {
-            (None, None, None)
+            (None, None)
         };
 
         let inline = if pairings.len() < 3 {
@@ -37,7 +37,7 @@ impl IndexMacro {
 
             Some(quote! {
                 #[automatically_derived]
-                impl #g1 ::core::ops::IndexMut<#idx_by> for #impl_for #g2 #g3 {
+                impl #g1 ::core::ops::IndexMut<#idx_by> for #impl_for #g3 {
                     #inline
                     fn index_mut(&mut self, index_macro_derived_index_input: #idx_by) -> &mut Self::Output {
                         match index_macro_derived_index_input {
@@ -58,7 +58,7 @@ impl IndexMacro {
 
         quote! {
             #[automatically_derived]
-            impl #g1 ::core::ops::Index<#idx_by> for #impl_for #g2 #g3 {
+            impl #g1 ::core::ops::Index<#idx_by> for #impl_for #g3 {
                 type Output = #output;
 
                 #inline
